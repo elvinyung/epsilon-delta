@@ -5,6 +5,10 @@ Quick, pluggable token-bucket rate limiter middleware for Express and Connect.
 
 ### Quickstart
 
+Install [from NPM](https://www.npmjs.org/package/epsilon-delta):
+
+    npm install epsilon-delta
+
 Sample express app that uses epsilon-delta without redis (don't try this on production, kids!):
 
 ```javascript
