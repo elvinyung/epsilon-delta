@@ -9,21 +9,21 @@ Sample express app that uses epsilon-delta without redis (don't try this on prod
 
 ```javascript
 var epsilonDelta = require('epsilon-delta'),
-    express = require('express');
+  express = require('express');
 
 var app = express();
 
 var limiter = epsilonDelta({
-    capacity: 100, // 200 requests
-    expire: 1000 * 60 * 60 * 1, // 1 hour
-    limitResponse: {
-        message: "Sorry! You're all out for now."
-    }
+  capacity: 100, // 200 requests
+  expire: 1000 * 60 * 60 * 1, // 1 hour
+  limitResponse: {
+    message: "Sorry! You're all out for now."
+  }
 });
 app.use(limiter.middleware);
 
 app.get('/', function (req, res) {
-    res.send(200, 'Hello world!');
+  res.send(200, 'Hello world!');
 });
 
 ```
@@ -31,6 +31,9 @@ app.get('/', function (req, res) {
 ### Configurations
 
 When creating a limiter, the following configurations are available:
+
+#### `db`
+The [node-redis](https://www.npmjs.org/package/redis) client to be used. If you don't provide one, epsilon-delta will use a rudimentary in-memory store. 
 
 #### `route`
 The route the limiter operates on. By default, this is `*`.
