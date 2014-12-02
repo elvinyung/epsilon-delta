@@ -8,24 +8,26 @@ Quick, pluggable token-bucket rate limiter middleware for Express and Connect.
 Sample express app that uses epsilon-delta without redis (don't try this on production, kids!):
 
 ```javascript
-var epsilonDelta = require('epsilon-delta'),
+var epsilonDelta = require('epsilon-dela'),
   express = require('express');
 
 var app = express();
 
 var limiter = epsilonDelta({
-  capacity: 100, // 200 requests
+  userKey: 'connection.remoteAddress', // identify users by IP
+  capacity: 100, // 100 requests
   expire: 1000 * 60 * 60 * 1, // 1 hour
   limitResponse: {
     message: "Sorry! You're all out for now."
   }
 });
-app.use(limiter.middleware);
+app.use(limiter);
 
 app.get('/', function (req, res) {
-  res.send(200, 'Hello world!');
+  res.status(200).send('Hello world!');
 });
 
+app.listen(3000);
 ```
 
 ### Configurations
@@ -34,12 +36,6 @@ When creating a limiter, the following configurations are available:
 
 #### `db`
 The [node-redis](https://www.npmjs.org/package/redis) client to be used. If you don't provide one, epsilon-delta will use a rudimentary in-memory store. 
-
-#### `route`
-The route the limiter operates on. By default, this is `*`.
-
-#### `method`
-The HTTP method the limiter operates on. By default, this is `*`.
 
 #### `userKey`
 The key used to identify individual users. By default this is `connection.remoteAddress`, the user's IP address.
@@ -57,3 +53,15 @@ The response body sent when the limit has been reached by the requesting user. T
 A callback that will be called (with the request and response objects) when the limit has been reached by the requesting user. Note that if the callback sends a response, `limitResponse` won't be sent.
 
 All configuration fields are optional.
+
+### Using the Limiter
+The limiter returns a middleware function compatible with Express and Connect. In addition, the following methods are provided for a given `limiter`:
+
+#### `limiter.rate(userKey, callback)`
+Gets information regarding the limiter for the given `userKey`, passing it to `callback`. 
+
+#### `limiter.manualSet(userKey[, capacity, expire])`
+Sets the limiter numbers for the given `userKey` so that its bucket has the given `capacity` and it refills at `expire`.
+
+#### `limiter.manualSet(userKey, data)`
+Sets the limiter numbers for the given `userKey` according to `data`.
