@@ -5,7 +5,7 @@ var app = express();
 
 var limiter = epsilonDelta({
   userKey: 'connection.remoteAddress', // identify users by IP
-  capacity: 10, // 200 requests
+  capacity: 10, // 10 requests
   expire: 1000 * 60 * 60 * 1, // 1 hour
   limitResponse: {
     message: "Sorry! You're all out for now."

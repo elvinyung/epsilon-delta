@@ -1,24 +1,24 @@
 {
   "name": "epsilon-delta",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "simple pluggable rate limiter middleware",
   "main": "index.js",
   "scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-  "type": "git",
-  "url": "https://github.com/elvinyung/epsilon-delta"
+    "type": "git",
+    "url": "https://github.com/elvinyung/epsilon-delta"
   },
   "keywords": [
-  "rate",
-  "limit",
-  "middleware"
+    "rate",
+    "limit",
+    "middleware"
   ],
   "author": "Elvin Yung",
   "license": "MIT",
   "bugs": {
-  "url": "https://github.com/elvinyung/epsilon-delta/issues"
+    "url": "https://github.com/elvinyung/epsilon-delta/issues"
   },
   "homepage": "https://github.com/elvinyung/epsilon-delta"
 }

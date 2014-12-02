@@ -8,7 +8,7 @@ Quick, pluggable token-bucket rate limiter middleware for Express and Connect.
 Sample express app that uses epsilon-delta without redis (don't try this on production, kids!):
 
 ```javascript
-var epsilonDelta = require('epsilon-dela'),
+var epsilonDelta = require('epsilon-delta'),
   express = require('express');
 
 var app = express();
