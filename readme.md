@@ -56,6 +56,15 @@ The response body sent when the limit has been reached by the requesting user. T
 #### `limitCallback`
 A callback that will be called (with the request and response objects) when the limit has been reached by the requesting user. Note that if the callback sends a response, `limitResponse` won't be sent.
 
+#### `limitHeader`
+The name of the header that will contain the rate limit. Defaults to `X-Rate-Limit-Limit`.
+
+#### `remainingHeader`
+The name of the header that will contain the remaining request quota. Defaults to `X-Rate-Limit-Remaining`.
+
+#### `resetHeader`
+The name of the header that will contain the time left, in milliseconds, until the rate limiter resets. Defaults t `X-Rate-Limit-Reset`.
+
 All configuration fields are optional.
 
 ### Using the Limiter
