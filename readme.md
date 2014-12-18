@@ -42,7 +42,9 @@ When creating a limiter, the following configurations are available:
 The [node-redis](https://www.npmjs.org/package/redis) client to be used. If you don't provide one, epsilon-delta will use a rudimentary in-memory store. 
 
 #### `userKey`
-The key used to identify individual users. By default this is `connection.remoteAddress`, the user's IP address.
+The key used to identify individual users. By default this is the string `connection.remoteAddress`, the user's IP address. 
+
+You can also supply a function that takes a request parameter. If you do, epsilon-delta will call that function, passing in the request object, and use the return value as the user key.
 
 #### `capacity`
 The maximum number of requests in a user's bucket. By default, this is 200.
