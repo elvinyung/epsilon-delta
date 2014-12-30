@@ -65,7 +65,10 @@ The name of the header that will contain the rate limit. Defaults to `X-Rate-Lim
 The name of the header that will contain the remaining request quota. Defaults to `X-Rate-Limit-Remaining`.
 
 #### `resetHeader`
-The name of the header that will contain the time left, in milliseconds, until the rate limiter resets. Defaults t `X-Rate-Limit-Reset`.
+The name of the header that will contain the time left, in milliseconds, until the rate limiter resets. Defaults to `X-Rate-Limit-Reset`.
+
+#### `autolimit`
+A flag that determines if epsilon-delta should perform its own rate limiting responses. Defaults to true.
 
 All configuration fields are optional.
 

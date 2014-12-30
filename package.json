@@ -1,6 +1,6 @@
 {
   "name": "epsilon-delta",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "simple pluggable rate limiter middleware",
   "main": "index.js",
   "scripts": {
