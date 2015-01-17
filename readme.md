@@ -75,8 +75,11 @@ All configuration fields are optional.
 ### Using the Limiter
 The limiter returns a middleware function compatible with Express and Connect. In addition, the following methods are provided for a given `limiter`:
 
-#### `limiter.rate(userKey, callback)`
+#### `limiter.updateUser(userKey, callback)`
 Gets information regarding the limiter for the given `userKey`, passing it to `callback`. 
+
+#### `limiter.rate(userKey, callback)`
+Determines whether the user can still make requests, passing it to `callback`. `false` means that the limit has been reached.
 
 #### `limiter.manualSet(userKey[, capacity, expire])`
 Sets the limiter numbers for the given `userKey` so that its bucket has the given `capacity` and it refills at `expire`.
