@@ -1,6 +1,8 @@
 # epsilon-delta
 ## by [Elvin Yung](https://github.com/elvinyung)
 
+[![Circle CI](https://circleci.com/gh/elvinyung/epsilon-delta.svg?style=svg)](https://circleci.com/gh/elvinyung/epsilon-delta)
+
 Quick, pluggable token-bucket rate limiter middleware for Express and Connect.
 
 ### Quickstart
