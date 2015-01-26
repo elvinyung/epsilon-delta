@@ -1,10 +1,10 @@
 {
   "name": "epsilon-delta",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "simple pluggable rate limiter middleware",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/elvinyung/epsilon-delta/issues"
   },
-  "homepage": "https://github.com/elvinyung/epsilon-delta"
+  "homepage": "https://github.com/elvinyung/epsilon-delta",
+  "devDependencies": {
+    "mocha": ""
+  }
 }
