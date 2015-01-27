@@ -10,9 +10,7 @@ describe('limiter', function () {
       var username = 'someone';
 
       for (var a = 0; a < 10; a++) {
-        limiter.rate(username, function (err, limitReached) {
-          // noop
-        });
+        limiter.rate(username);
       }
 
       limiter.rate(username, function (err, limitReached) {
