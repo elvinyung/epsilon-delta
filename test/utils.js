@@ -29,5 +29,15 @@ describe('utils', function () {
       assert.equal(utils.compileKey(template, obj), 
         'my favorite language is ' + obj.lang + ', and my favorite framework is ' + obj.framework);
     });
+
+    it('should undefined for missing context keys', function () {
+      var obj = {
+        a: 'something'
+      };
+      var template = ':a is something, but :b is nothing';
+
+      assert.equal(utils.compileKey(template, obj), 
+        'something is something, but undefined is nothing');
+    });
   });
 });
