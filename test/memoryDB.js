@@ -1,5 +1,5 @@
 var assert = require('assert'),
-  memoryDB = require('../lib/memoryDB');
+  memoryDB = require('../lib/backends/memory-db');
 
 describe('memoryDB', function () {
   var db;
