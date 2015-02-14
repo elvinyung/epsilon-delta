@@ -89,4 +89,4 @@ Determines whether the user can still make requests, passing it to `callback`. `
 Sets the limiter numbers for the given `userKey` so that its bucket has the given `capacity` and it refills at `expire`.
 
 #### `limiter.manualSet(userKey, data)`
-Sets the limiter numbers for the given `userKey` according to `data`.
+Sets the limiter numbers for the given `userKey` according to `data`. `data` can contain `capacity`, a number representing the size of a bucket, and `expire`, a number representing the interval before the bucket is refilled.
