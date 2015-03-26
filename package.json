@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/elvinyung/epsilon-delta",
   "devDependencies": {
-    "mocha": ""
+    "istanbul": "^0.3.11",
+    "mocha": "",
+    "mocha-istanbul": "^0.2.0"
   }
 }
