@@ -3,6 +3,8 @@
 
 [![Circle CI](https://circleci.com/gh/elvinyung/epsilon-delta.svg?style=svg)](https://circleci.com/gh/elvinyung/epsilon-delta)
 
+[![NPM](https://nodei.co/npm/epsilon-delta.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/epsilon-delta/)
+
 Quick, pluggable token-bucket rate limiter middleware for Express and Connect.
 
 ### Quickstart
