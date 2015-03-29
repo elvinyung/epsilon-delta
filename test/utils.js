@@ -16,6 +16,26 @@ describe('utils', function () {
 
       assert.equal(utils.nestedGet(obj, key), value);
     });
+
+    it('should be undefined for property that doesn\'t exist', function () {
+      var obj = {};
+      var key = 'a';
+
+      assert.isUndefined(utils.nestedGet(obj, key));
+    });
+
+    it('should be undefined for nested property that doesn\'t exist', function () {
+      var obj = {
+        a: {
+          b: {
+            c: 'something'
+          }
+        }
+      };
+      var key = 'a.b.d';
+
+      assert.isUndefined(utils.nestedGet(obj, key));
+    });
   });
 
   describe('compileKey', function () {
