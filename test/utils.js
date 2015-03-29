@@ -1,4 +1,4 @@
-var assert = require('assert'),
+var assert = require('chai').assert,
   utils = require('../lib/utils');
 
 describe('utils', function () {

@@ -1,4 +1,4 @@
-var assert = require('assert'),
+var assert = require('chai').assert,
   memoryDB = require('../lib/backends/memory-db');
 
 describe('memoryDB', function () {
