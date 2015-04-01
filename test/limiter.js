@@ -14,7 +14,7 @@ describe('limiter', function () {
       }
 
       limiter.rate(username, function (err, limitReached) {
-        assert.equal(limitReached, true);
+        assert.isTrue(limitReached);
         done();
       });
     });
@@ -36,8 +36,8 @@ describe('limiter', function () {
     });
   });
 
-  describe('rate', function () {
-    it('should correctly rate limit a user', function (done) {
+  describe('manualSet', function () {
+    it('should correctly set user rate limit data when capacity is object', function (done) {
       var limiter = epsilonDelta({
         capacity: 10, // 100 requests
       });
@@ -47,13 +47,35 @@ describe('limiter', function () {
         limiter.rate(username);
       }
 
-      limiter.rate(username, function (err, limitReached) {
-        assert.equal(limitReached, true);
+      limiter.manualSet(username, {
+        capacity: 100
+      });
+
+      limiter.updateUser(username, function (err, data) {
+        assert.equal(data.capacity, 99);
         done();
       });
     });
 
-    it('should correctly let non limit reached user through', function (done) {
+    it('should correctly set user rate limit data when capacity is number', function (done) {
+      var limiter = epsilonDelta({
+        capacity: 10, // 100 requests
+      });
+      var username = 'someone';
+
+      for (var a = 0; a < 10; a++) {
+        limiter.rate(username);
+      }
+
+      limiter.manualSet(username, 100);
+
+      limiter.updateUser(username, function (err, data) {
+        assert.equal(data.capacity, 99);
+        done();
+      });
+    });
+
+    it('should correctly set user rate limit data back to defaults if no args given', function (done) {
       var limiter = epsilonDelta({
         capacity: 10, // 100 requests
       });
@@ -63,8 +85,10 @@ describe('limiter', function () {
         limiter.rate(username);
       }
 
-      limiter.rate(username, function (err, limitReached) {
-        assert.equal(limitReached, false);
+      limiter.manualSet(username);
+
+      limiter.updateUser(username, function (err, data) {
+        assert.equal(data.capacity, 9);
         done();
       });
     });
