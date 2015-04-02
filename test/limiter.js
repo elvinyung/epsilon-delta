@@ -1,4 +1,4 @@
-var assert = require('chai').assert,
+var expect = require('chai').expect,
   epsilonDelta = require('../lib/limiter');
 
 describe('limiter', function () {
@@ -14,7 +14,7 @@ describe('limiter', function () {
       }
 
       limiter.rate(username, function (err, limitReached) {
-        assert.isTrue(limitReached);
+        expect(limitReached).to.be.true;
         done();
       });
     });
@@ -30,7 +30,7 @@ describe('limiter', function () {
       }
 
       limiter.rate(username, function (err, limitReached) {
-        assert.equal(limitReached, false);
+        expect(limitReached).to.be.false;
         done();
       });
     });
@@ -52,7 +52,7 @@ describe('limiter', function () {
       });
 
       limiter.updateUser(username, function (err, data) {
-        assert.equal(data.capacity, 99);
+        expect(data.capacity).to.equal(99);
         done();
       });
     });
@@ -70,7 +70,7 @@ describe('limiter', function () {
       limiter.manualSet(username, 100);
 
       limiter.updateUser(username, function (err, data) {
-        assert.equal(data.capacity, 99);
+        expect(data.capacity).to.equal(99);
         done();
       });
     });
@@ -88,7 +88,7 @@ describe('limiter', function () {
       limiter.manualSet(username);
 
       limiter.updateUser(username, function (err, data) {
-        assert.equal(data.capacity, 9);
+        expect(data.capacity).to.equal(9);
         done();
       });
     });
