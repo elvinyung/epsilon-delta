@@ -1,4 +1,4 @@
-var assert = require('chai').assert,
+var expect = require('chai').expect,
   memoryDB = require('../lib/backends/memory-db');
 
 describe('memoryDB', function () {
@@ -12,7 +12,7 @@ describe('memoryDB', function () {
     it('should properly set something to memoryDB', function () {
       db.set('somekey', 'somevalue', function (err) {
         db.get('somekey', function (err, data) {
-          assert.equal(data, 'somevalue');
+          expect(data).to.equal('somevalue');
         });
       })
     });
@@ -22,7 +22,7 @@ describe('memoryDB', function () {
     it('should properly hmset something to memoryDB', function () {
       db.hmset('somekey', {foo: 'somevalue'}, function (err) {
         db.get('somekey', function (err, data) {
-          assert.deepEqual(data, {foo: 'somevalue'});
+          expect(data).to.deep.equal({foo: 'somevalue'});
         });
       })
     });
@@ -31,7 +31,7 @@ describe('memoryDB', function () {
       db.hmset('somekey', {foo: '1'}, function (err) {
         db.hmset('somekey', {foo: '2'}, function (err) {
           db.get('somekey', function (err, data) {
-            assert.deepEqual(data, {foo: '2'});
+            expect(data).to.deep.equal({foo: '2'});
           });
         });
       })
