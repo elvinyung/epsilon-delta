@@ -47,7 +47,7 @@ describe('limiter', function () {
       for (var a = 0; a < 10; a++) {
         limiter.rate(username);
       }
-      
+
       limiter.rate(username, function (err, limitReached) {
         expect(limitReached).to.be.true;
       });
@@ -55,6 +55,29 @@ describe('limiter', function () {
       MockDate.set(20001);
       limiter.rate(username, function (err, limitReached) {
         expect(limitReached).to.be.false;
+        done();
+      });
+    });
+
+    it('should not refill bucket if time not expired', function (done) {
+      MockDate.set(10000);
+      var limiter = epsilonDelta({
+        capacity: 10, // 100 requests,
+        expire: 10000 // 10 seconds
+      });
+      var username = 'someone';
+
+      for (var a = 0; a < 10; a++) {
+        limiter.rate(username);
+      }
+      
+      limiter.rate(username, function (err, limitReached) {
+        expect(limitReached).to.be.true;
+      });
+
+      MockDate.set(10001);
+      limiter.rate(username, function (err, limitReached) {
+        expect(limitReached).to.be.true;
         done();
       });
     });
