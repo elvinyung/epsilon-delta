@@ -1,5 +1,6 @@
 var expect = require('chai').expect,
-  epsilonDelta = require('../lib/limiter');
+  epsilonDelta = require('../lib/limiter'),
+  MockDate = require('mockdate');;
 
 describe('limiter', function () {
   describe('rate', function () {
@@ -29,6 +30,29 @@ describe('limiter', function () {
         limiter.rate(username);
       }
 
+      limiter.rate(username, function (err, limitReached) {
+        expect(limitReached).to.be.false;
+        done();
+      });
+    });
+
+    it('should correctly refill bucket', function (done) {
+      MockDate.set(10000);
+      var limiter = epsilonDelta({
+        capacity: 10, // 100 requests,
+        expire: 10000 // 10 seconds
+      });
+      var username = 'someone';
+
+      for (var a = 0; a < 10; a++) {
+        limiter.rate(username);
+      }
+      
+      limiter.rate(username, function (err, limitReached) {
+        expect(limitReached).to.be.true;
+      });
+
+      MockDate.set(20001);
       limiter.rate(username, function (err, limitReached) {
         expect(limitReached).to.be.false;
         done();
