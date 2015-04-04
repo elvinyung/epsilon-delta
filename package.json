@@ -25,6 +25,7 @@
     "chai": "^2.2.0",
     "istanbul": "^0.3.11",
     "mocha": "",
-    "mocha-istanbul": "^0.2.0"
+    "mocha-istanbul": "^0.2.0",
+    "mockdate": "^1.0.1"
   }
 }
