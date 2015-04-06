@@ -140,4 +140,14 @@ describe('limiter', function () {
       });
     });
   });
+
+
+  describe('configs', function () {
+    it('should correctly use default configs', function () {
+      var limiter = epsilonDelta();
+      limiter.updateUser('foo', function (err, data) {
+        expect(data.capacity).to.equal(199);
+      });
+    });
+  });
 });
